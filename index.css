@@ -1,3 +1,29 @@
+@font-face {
+    font-family: 'DM Sans';
+    src: local('DM Sans'),
+         url(".assets\fonts\DM_Sans\DMSans-VariableFont_opsz,wght.ttf") format('truetype');
+    font-weight: 100 900;
+    font-display: swap;
+}
+
+body {
+    background-color: hsl(243, 96%, 9%);
+    font-family: 'DM Sans', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+}
+
+.nav-bar {
+    display: inline-flex;
+}
+
+.nav-bar > img {
+    height: 20px;
+    padding: 10px;
+}
+
+.dropdown-menu {
+    color: white;
+}
+
 .search-icon {
     position: absolute;
     left: 7px;
@@ -18,6 +44,10 @@
 .search-bar input {
     padding-left: 30px;
     font-size: 10px;
+}
+
+.search-bar > h1 {
+    color: white
 }
 
 .search-input {
