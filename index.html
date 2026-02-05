@@ -12,12 +12,18 @@
 <body>
     <div class="nav-bar">
         <img src="./assets/images/logo.svg" alt="Weather Logo">
-        <div class="dropdown-menu">
-            <button class="units-btn">
+        <div class="dropdown-btn">
+            <button class="units-btn" onclick=dropDown()>
                 <span><img src="./assets/images/icon-units.svg" alt="" class="unit-icon"></span>
                 Units 
                 <span><img src="./assets/images/icon-dropdown.svg" alt="" class="dropdown-icon"></span>
             </button>
+            <div class="dropdown-content">
+                <div>Hi</div>
+                <div>Hi</div>
+                <div>Hi</div>
+                <div>Hi</div>
+            </div>
             <!-- <label for="units">Units</label>
             <select name="units" id="units" aria-label="Measurement Units">
                 <option value="metric">Metric</option>
@@ -43,7 +49,7 @@
     <div class="search-bar">
         <h1>How's The Sky Looking Today?</h1>
         <form onsubmit="" class="search-form">
-            <span class="search-icon"><img src="./assets/images/icon-search.svg"></span>
+            <span><img src="./assets/images/icon-search.svg" class="search-icon"></span>
             <input type="text" placeholder="Search for a place..." class="search-input" value="">
             <button type="submit" class="search-btn">Search</button>
         </form>
