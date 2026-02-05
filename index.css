@@ -2,6 +2,7 @@
     font-family: 'DM Sans';
     src: local('DM Sans'),
          url(".assets\fonts\DM_Sans\DMSans-VariableFont_opsz,wght.ttf") format('truetype');
+    font-style: italic;
     font-weight: 100 900;
     font-display: swap;
 }
@@ -12,12 +13,38 @@ body {
 }
 
 .nav-bar {
-    display: inline-flex;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 20px;
 }
 
 .nav-bar > img {
     height: 20px;
     padding: 10px;
+    margin-left: 30px;
+}
+
+.units-btn {
+    margin-right:30px;
+    background-color: hsl(243, 23%, 24%);
+    border: 0;
+    color: hsl(250, 6%, 84%);
+    display: flex;
+    gap: 5px;
+    padding:5px;
+    border-radius: 5px;
+    font-size: 10px;
+}
+
+.unit-icon {
+    height: 10px;
+    padding-left:1px;
+}
+
+.dropdown-icon {
+    height: 5px;
+    padding-bottom: 1px
 }
 
 .dropdown-menu {
@@ -42,8 +69,16 @@ body {
 }
 
 .search-bar input {
-    padding-left: 30px;
+    color: white;
+    background-color: hsl(243, 23%, 24%);
+    padding-left: 35px;
     font-size: 10px;
+    border-radius: 5px;
+    border: 0;
+}
+
+.search-bar input::placeholder {
+    color: hsl(250, 6%, 84%);
 }
 
 .search-bar > h1 {
@@ -58,4 +93,8 @@ body {
 .search-btn {
     height: 34px;
     padding: 0 14px;
+    border-radius: 5px;
+    color: white;
+    background-color: hsl(233, 67%, 56%);
+    border:0;
 }
