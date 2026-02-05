@@ -1,0 +1,31 @@
+.search-icon {
+    position: absolute;
+    left: 7px;
+    top: 7px;
+}
+
+.search-form {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.search-bar {
+    text-align: center;
+}
+
+.search-bar input {
+    padding-left: 30px;
+    font-size: 10px;
+}
+
+.search-input {
+    height: 30px;
+    width: 200px
+}
+
+.search-btn {
+    height: 34px;
+    padding: 0 14px;
+}
