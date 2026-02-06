@@ -14,10 +14,21 @@ function changeUnit() {
 }
 
 const unitBtn = document.querySelector(".units-btn");
+const dropDownMenu = document.querySelector('.dropdown-content');
 function dropDown() {
-  document.querySelector(".dropdown-content").classList.toggle("show");
+  dropDownMenu.classList.toggle("show");
 }
 unitBtn.addEventListener("click", dropDown);
+
+document.addEventListener("click", e => {
+    if (dropDownMenu.classList.contains("show")) {
+        if(!dropDownMenu.contains(e.target) && e.target !== unitBtn) {
+            dropDownMenu.classList.toggle("show")
+        }
+    } else {
+        return
+    }
+})
 
 const dropBtn = document.querySelectorAll(".dropdown-content button");
 dropBtn.forEach((button) => {
