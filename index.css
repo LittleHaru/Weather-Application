@@ -7,6 +7,11 @@
     font-display: swap;
 }
 
+/* Setting root font size to 10px */
+html {
+    font-size: 62.5%; 
+}
+
 body {
     background-color: hsl(243, 96%, 9%);
     font-family: 'DM Sans', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
@@ -16,11 +21,11 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-top: 20px;
+    margin-top: 2rem;
 }
 
 .nav-bar > img {
-    height: 20px;
+    height: 2rem;
     padding: 10px;
     margin-left: 30px;
 }
@@ -108,7 +113,8 @@ body {
 }
 
 .search-bar > h1 {
-    color: white
+    color: white;
+    font-size: 60px
 }
 
 .search-input {
