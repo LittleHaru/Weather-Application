@@ -13,22 +13,22 @@
     <div class="nav-bar">
         <img src="./assets/images/logo.svg" alt="Weather Logo">
         <div class="dropdown-btn">
-            <button class="units-btn" onclick=dropDown()>
+            <button class="units-btn">
                 <span><img src="./assets/images/icon-units.svg" alt="" class="unit-icon"></span>
                 Units 
                 <span><img src="./assets/images/icon-dropdown.svg" alt="" class="dropdown-icon"></span>
             </button>
             <div class="dropdown-content">
-                <button>Switch to Imperial</button>
+                <button class="unit-change">Switch to Imperial</button>
                 <div>Temperature</div>
-                <button>Celcius</button>
-                <button>Fahrenheit</button>
+                <button parameter="temperature" value="celsius">Celcius</button>
+                <button parameter="temperature" value="fahrenheit">Fahrenheit</button>
                 <div>Wind Speed</div>
-                <button>km/h</button>
-                <button>mph</button>
+                <button parameter="windSpeed" value="km/h">km/h</button>
+                <button parameter="windSpeed" value="mph">mph</button>
                 <div>Percipitation</div>
-                <button>Millimeters (mm)</button>
-                <button>Inches (in)</button>
+                <button parameter="percipitation" value="millimeters">Millimeters (mm)</button>
+                <button parameter="percipitation" value="inches">Inches (in)</button>
             </div>
         </div>
     </div>
