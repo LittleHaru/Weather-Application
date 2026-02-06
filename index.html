@@ -1,92 +1,93 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- displays site properly based on user's device -->
 
-  <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
-  
-  <title>Frontend Mentor | Weather app</title>
-  <link rel="stylesheet" href="./index.css"></style>
-</head>
-<body>
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./assets/images/favicon-32x32.png"
+    />
+
+    <title>Frontend Mentor | Weather app</title>
+    <link rel="stylesheet" href="./index.css" />
+  </head>
+  <body>
     <div class="nav-bar">
-        <img src="./assets/images/logo.svg" alt="Weather Logo">
-        <div class="dropdown-btn">
-            <button class="units-btn">
-                <span><img src="./assets/images/icon-units.svg" alt="" class="unit-icon"></span>
-                Units 
-                <span><img src="./assets/images/icon-dropdown.svg" alt="" class="dropdown-icon"></span>
-            </button>
-            <div class="dropdown-content">
-                <button class="unit-change">Switch to Imperial</button>
-                <div>Temperature</div>
-                <button parameter="temperature" value="celsius">Celcius</button>
-                <button parameter="temperature" value="fahrenheit">Fahrenheit</button>
-                <div>Wind Speed</div>
-                <button parameter="windSpeed" value="km/h">km/h</button>
-                <button parameter="windSpeed" value="mph">mph</button>
-                <div>Percipitation</div>
-                <button parameter="percipitation" value="millimeters">Millimeters (mm)</button>
-                <button parameter="percipitation" value="inches">Inches (in)</button>
-            </div>
+      <img src="./assets/images/logo.svg" alt="Weather Logo" />
+      <div class="dropdown-btn">
+        <button class="units-btn">
+          <span
+            ><img src="./assets/images/icon-units.svg" alt="unit-icon" class="unit-icon"
+          /></span>
+          Units
+          <span
+            ><img
+              src="./assets/images/icon-dropdown.svg"
+              alt="dropdown-icon"
+              class="dropdown-icon"
+          /></span>
+        </button>
+        <div class="dropdown-content">
+          <button class="unit-change">Switch to Imperial</button>
+          <div>Temperature</div>
+          <button parameter="temperature" value="celsius">Celcius</button>
+          <button parameter="temperature" value="fahrenheit">Fahrenheit</button>
+          <div>Wind Speed</div>
+          <button parameter="windSpeed" value="km/h">km/h</button>
+          <button parameter="windSpeed" value="mph">mph</button>
+          <div>Percipitation</div>
+          <button parameter="percipitation" value="millimeters">
+            Millimeters (mm)
+          </button>
+          <button parameter="percipitation" value="inches">Inches (in)</button>
         </div>
+      </div>
     </div>
     <div class="search-bar">
-        <h1>How's The Sky Looking Today?</h1>
-        <form onsubmit="" class="search-form">
-            <span><img src="./assets/images/icon-search.svg" class="search-icon"></span>
-            <input type="text" placeholder="Search for a place..." class="search-input" value="">
-            <button type="submit" class="search-btn">Search</button>
-        </form>
+      <h1>How's The Sky Looking Today?</h1>
+      <form onsubmit="" class="search-form">
+        <span
+          ><img src="./assets/images/icon-search.svg" class="search-icon"
+        /></span>
+        <input
+          type="text"
+          placeholder="Search for a place..."
+          class="search-input"
+          value=""
+        />
+        <button type="submit" class="search-btn">Search</button>
+      </form>
     </div>
 
-  Units
+    Units Switch to Imperial/Metric Temperature Celsius (°C) Fahrenheit (°F)
+    Wind Speed km/h mph Precipitation Millimeters (mm) Inches (in) How's the sky
+    looking today? Search for a city, e.g., New York Search Feels like
+    <!-- Insert temperature here -->
 
-  Switch to Imperial/Metric
+    Humidity
+    <!-- Insert humidity here -->
 
-  Temperature
+    Wind
+    <!-- Insert wind here -->
 
-  Celsius (°C)
-  Fahrenheit (°F)
+    Precipitation
+    <!-- Insert precipitation here -->
 
-  Wind Speed
+    Daily forecast
+    <!-- Insert daily forecast for the next 7 days here -->
 
-  km/h
-  mph
+    Hourly forecast
+    <!-- Insert hourly forecast for the selected day here -->
 
-  Precipitation
-
-  Millimeters (mm)
-  Inches (in)
-
-  How's the sky looking today?
-
-  Search for a city, e.g., New York
-  Search
-
-  Feels like
-  <!-- Insert temperature here -->
-
-  Humidity
-  <!-- Insert humidity here -->
-
-  Wind
-  <!-- Insert wind here -->   
-  
-  Precipitation
-  <!-- Insert precipitation here -->
-
-  Daily forecast
-  <!-- Insert daily forecast for the next 7 days here -->
-
-  Hourly forecast
-  <!-- Insert hourly forecast for the selected day here -->
-
-  <div class="attribution">
-    Challenge by <a href="https://www.frontendmentor.io?ref=challenge">Frontend Mentor</a>. 
-    Coded by <a href="#">Your Name Here</a>.
-  </div>
-  <script src="./script.js"></script>
-</body>
+    <div class="attribution">
+      Challenge by
+      <a href="https://www.frontendmentor.io?ref=challenge">Frontend Mentor</a>.
+      Coded by <a href="#">Your Name Here</a>.
+    </div>
+    <script src="./script.js"></script>
+  </body>
 </html>
