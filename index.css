@@ -188,6 +188,7 @@ body {
   border: 0;
 }
 
+/* Weather Information */
 .weather-content {
   display: flex;
   margin-top: var(--spacing-xl);
@@ -210,6 +211,7 @@ body {
   background-color: var(--color-bg-secondary);
 }
 
+/* Weather Info In Image */
 .temperature-container {
   position: relative;
   display: inline-block;
@@ -265,6 +267,7 @@ body {
   font-size: 70px;
 }
 
+/* Daily Forcast */
 .daily-forecast {
   margin-top: var(--spacing-md);
   display: flex;
@@ -284,6 +287,7 @@ body {
   flex: 1;
 }
 
+/* Hourly Forecast */
 .hourly-forecast {
   background-color: var(--color-bg-secondary);
   width: 50rem;
