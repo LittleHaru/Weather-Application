@@ -62,27 +62,35 @@
         <button type="submit" class="search-btn">Search</button>
       </form>
     </div>
-
-    Units Switch to Imperial/Metric Temperature Celsius (°C) Fahrenheit (°F)
-    Wind Speed km/h mph Precipitation Millimeters (mm) Inches (in) How's the sky
-    looking today? Search for a city, e.g., New York Search Feels like
-    <!-- Insert temperature here -->
-
-    Humidity
-    <!-- Insert humidity here -->
-
-    Wind
-    <!-- Insert wind here -->
-
-    Precipitation
-    <!-- Insert precipitation here -->
-
-    Daily forecast
-    <!-- Insert daily forecast for the next 7 days here -->
-
-    Hourly forecast
-    <!-- Insert hourly forecast for the selected day here -->
-
+    <div class="weather-content">
+      <div class="left-side">
+        <div class="temperature">
+          <img src="./assets/images/bg-today-large.svg" alt="weather image">
+        </div>
+        <div class="weather-info">
+          <div class="feels"></div>
+          <div class="humidity"></div>
+          <div class="wind"></div>
+          <div class="percipitation"></div>
+        </div>
+        <div class="daily-title">Daily Forecast</div>
+        <div class="daily-forecast"> 
+          <!-- use js to render later -->
+          <div class="daily"></div>
+          <div class="daily"></div>
+          <div class="daily"></div>
+          <div class="daily"></div>
+          <div class="daily"></div>
+          <div class="daily"></div>
+          <div class="daily"></div>
+        </div>
+      </div>
+      <div class="right-side">
+        <div class="hourly-forecast">
+          <div></div>
+        </div>
+      </div>
+    </div>
     <div class="attribution">
       Challenge by
       <a href="https://www.frontendmentor.io?ref=challenge">Frontend Mentor</a>.
