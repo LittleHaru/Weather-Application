@@ -25,6 +25,7 @@ body {
     "Helvetica Neue",
     Arial,
     sans-serif;
+  color: white;
 }
 
 /* Navigation Bar */
@@ -162,4 +163,52 @@ body {
   color: white;
   background-color: hsl(233, 67%, 56%);
   border: 0;
+}
+
+.weather-content {
+  display: flex;
+  margin-top: 5rem;
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: 10rem;
+}
+
+.weather-info {
+  margin-top: 2rem;
+  display: flex;
+  gap: 1rem;
+}
+
+.weather-info > div {
+  height: 10rem;
+  width: 13rem;
+  flex: 1;
+  border-radius: 5px;
+  background-color: hsl(243, 23%, 24%);
+}
+
+.daily-forecast {
+  margin-top: 2rem;
+  display: flex;
+  gap: 1rem;
+}
+
+.daily-title {
+  margin-top: 2rem;
+  font-size: 18px;
+}
+
+.daily {
+  width: 4rem;
+  height: 10rem;
+  background-color: hsl(243, 23%, 24%);
+  border-radius: 5px;
+  flex: 1;
+}
+
+.hourly-forecast {
+  background-color: hsl(243, 23%, 24%);
+  width: 50rem;
+  height: 57.4rem;
+  border-radius: 5px;
 }
