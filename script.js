@@ -1,5 +1,10 @@
-const temperatureContainer = document.querySelector('.daily-forecast')
-const todayTemperature = document.querySelector('.today-temp')
+const temperatureContainer = document.querySelector('.daily-forecast');
+const todayTemperature = document.querySelector('.today-temp');
+const unitBtn = document.querySelector(".units-btn");
+const dropDownMenu = document.querySelector('.dropdown-content');
+const dropBtn = document.querySelectorAll(".dropdown-content button");
+const metricBtn = document.querySelector(".unit-change");
+metricBtn.addEventListener("click", changeUnit);
 
 const settings = {
   type: "metric",
@@ -16,8 +21,6 @@ function changeUnit() {
   settings.type = settings.type === "metric" ? "imperial" : "metric";
 }
 
-const unitBtn = document.querySelector(".units-btn");
-const dropDownMenu = document.querySelector('.dropdown-content');
 function dropDown() {
   dropDownMenu.classList.toggle("show");
 }
@@ -33,7 +36,6 @@ document.addEventListener("click", e => {
     }
 })
 
-const dropBtn = document.querySelectorAll(".dropdown-content button");
 dropBtn.forEach((button) => {
   const parameter = button.getAttribute("parameter");
   const value = button.getAttribute("value");
@@ -47,10 +49,6 @@ dropBtn.forEach((button) => {
     assignSetting(parameter, value);
   });
 });
-
-const metricBtn = document.querySelector(".unit-change");
-metricBtn.addEventListener("click", changeUnit);
-
 
 function formatDate(dateString) {
     const date = new Date(dateString);
