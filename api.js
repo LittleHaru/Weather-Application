@@ -2,6 +2,7 @@ async function getWeatherData(latitude, longitude) {
     const params = new URLSearchParams({
         latitude,
         longitude,
+        current_weather: true,
         daily: "temperature_2m_max,temperature_2m_min",
         timezone: 'auto'
     });
@@ -15,9 +16,9 @@ async function getWeatherData(latitude, longitude) {
         }
         const data = await response.json();
         renderWeather(data.daily)
+        renderCurrent(data.current_weather)
     } catch (error) {
         console.error("Fetch error:", error)
     }
 }
-
-getWeatherData(52.52, 13.41);
+getWeatherData(3.1390, 101.6869);

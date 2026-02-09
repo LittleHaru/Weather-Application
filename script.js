@@ -1,4 +1,5 @@
 const temperatureContainer = document.querySelector('.daily-forecast')
+const todayTemperature = document.querySelector('.today-temp')
 
 const settings = {
   type: "metric",
@@ -78,4 +79,8 @@ function renderWeather(data) {
 
     temperatureContainer.appendChild(day);
   });
+}
+
+function renderCurrent(current) {
+  todayTemperature.textContent = `${Math.round(current.temperature)}°C`;
 }
