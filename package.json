@@ -3,6 +3,7 @@
     "prettier": "3.8.1"
   },
   "dependencies": {
-    "@openmeteo/sdk": "^1.25.0"
+    "@openmeteo/sdk": "^1.25.0",
+    "openmeteo": "^1.2.3"
   }
 }
