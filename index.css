@@ -264,6 +264,7 @@ body {
 }
 
 .right-temp {
+  margin-right: 3rem;
   display: flex;
   align-items: center;
   gap: 20px
@@ -274,8 +275,8 @@ body {
   height: 40%;
 }
 
-.temp {
-  font-size: 70px;
+.today-temp {
+  font-size: 6rem;
 }
 
 /* Daily Forcast */
@@ -296,6 +297,12 @@ body {
   background-color: var(--color-bg-secondary);
   border-radius: var(--radius);
   flex: 1;
+  align-content: center;
+}
+
+.daily-date , .daily-temp {
+  text-align: center;
+  font-size: 1.5rem;
 }
 
 /* Hourly Forecast */
