@@ -171,7 +171,7 @@ body {
 
 .search-bar > h1 {
   color: var(--color-text-primary);
-  font-size: 60px;
+  font-size: 6rem;
 }
 
 .search-input {
@@ -232,6 +232,17 @@ body {
   display: flex;      
   z-index: 2;
   gap: 20rem;
+}
+
+.weather-info .label {
+  font-size: 1.8rem;
+  color: hsl(240, 6%, 70%);
+  margin: var(--spacing-sm)
+}
+
+.weather-info .info {
+  margin: var(--spacing-sm);
+  font-size: 3rem;
 }
 
 .left-temp , .right-temp {
