@@ -1,3 +1,5 @@
+const temperatureContainer = document.querySelector('.daily-forecast')
+
 const settings = {
   type: "metric",
   temperature: "celsius",
@@ -47,3 +49,33 @@ dropBtn.forEach((button) => {
 
 const metricBtn = document.querySelector(".unit-change");
 metricBtn.addEventListener("click", changeUnit);
+
+
+function formatDate(dateString) {
+    const date = new Date(dateString);
+    return date.toLocaleDateString([], {
+        weekday: "short"
+    });
+}
+
+function renderWeather(data) {
+  const dates = data.time;
+  const maxTemps = data.temperature_2m_max;
+  const minTemps = data.temperature_2m_min;
+
+  temperatureContainer.innerHTML = ''
+
+  dates.forEach((date,index) => {
+    const day = document.createElement('div');
+    day.classList.add("daily")
+
+    day.innerHTML = `
+      <div class="daily-date">${formatDate(date)}</div>
+      <div class="daily-temp">
+        ${Math.round(maxTemps[index])}° / ${Math.round(minTemps[index])}°
+      </div>
+      `;
+
+    temperatureContainer.appendChild(day);
+  });
+}
