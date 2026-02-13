@@ -3,7 +3,7 @@ async function getWeatherData(latitude, longitude) {
         latitude,
         longitude,
         current_weather: true,
-        daily: "temperature_2m_max,temperature_2m_min",
+        daily: "temperature_2m_max,temperature_2m_min,weather_code",
         timezone: 'auto'
     });
 
@@ -21,4 +21,4 @@ async function getWeatherData(latitude, longitude) {
         console.error("Fetch error:", error)
     }
 }
-getWeatherData(3.1390, 101.6869);
+getWeatherData(3.1292, 101.6165);
