@@ -13,6 +13,33 @@ const settings = {
   percipitation: "millimeters",
 };
 
+const weatherCodeToIcon = {
+  0: 'icon-sunny',           
+  1: 'icon-partly-cloudy',  
+  2: 'icon-partly-cloudy',   
+  3: 'icon-overcast',          
+  45: 'icon-fog',
+  48: 'icon-fog',
+  51: 'icon-drizzle',
+  53: 'icon-drizzle',
+  55: 'icon-drizzle',
+  61: 'icon-rain',
+  63: 'icon-rain',
+  65: 'icon-rain',
+  71: 'icon-snow',      
+  73: 'icon-snow',     
+  75: 'icon-snow',     
+  77: 'icon-snow',     
+  80: 'icon-rain',      
+  81: 'icon-rain',     
+  82: 'icon-rain',      
+  85: 'icon-snow',      
+  86: 'icon-snow',      
+  95: 'icon-storm',
+  96: 'icon-storm',
+  99: 'icon-storm',   
+};
+
 function assignSetting(parameter, value) {
   settings[parameter] = value;
 }
@@ -61,15 +88,21 @@ function renderWeather(data) {
   const dates = data.time;
   const maxTemps = data.temperature_2m_max;
   const minTemps = data.temperature_2m_min;
+  const weatherCodes = data.weather_code || [];
 
   temperatureContainer.innerHTML = ''
 
-  dates.forEach((date,index) => {
+  dates.forEach((date, index) => {
     const day = document.createElement('div');
+    const code = weatherCodes[index];
+    const name = weatherIconName(code, true);
     day.classList.add("daily")
 
+    const iconName = weatherIconName(weatherCodes[index], true);
+    console.log(weatherCodes)
     day.innerHTML = `
       <div class="daily-date">${formatDate(date)}</div>
+      <img class="current-weather-icon" src="./assets/images/${iconName}.webp" alt="${iconName.replace(/[-]/g, ' ')}">
       <div class="daily-temp">
         ${Math.round(maxTemps[index])}° / ${Math.round(minTemps[index])}°
       </div>
@@ -81,4 +114,18 @@ function renderWeather(data) {
 
 function renderCurrent(current) {
   todayTemperature.textContent = `${Math.round(current.temperature)}°C`;
+  setCurrentWeatherIcon(current.weathercode ?? current.weather_code, current.is_day);
+}
+
+function weatherIconName(weatherCode, isDay) {
+  const base = weatherCodeToIcon[weatherCode] || 'unknown';
+  return isDay ? `${base}` : `${base}`;
+}
+
+function setCurrentWeatherIcon(weatherCode, isDay) {
+  const iconName = weatherIconName(weatherCode, isDay);
+  const img = document.querySelector('.current-weather-icon');
+  if (img) {
+    img.src = `./assets/images/${iconName}.webp`;
+  }
 }
