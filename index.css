@@ -192,9 +192,14 @@ body {
 .weather-content {
   display: flex;
   margin-top: var(--spacing-xl);
-  justify-content: center;
   gap: var(--spacing-md);
-  margin-bottom: 10rem;
+  width: 90vw;
+  min-height: 80vh;
+  justify-content: center;
+  align-items: stretch;
+  margin-left: auto;
+  margin-right: auto;
+  min-height: min-content;
 }
 
 .weather-info {
@@ -308,7 +313,9 @@ body {
 /* Hourly Forecast */
 .hourly-forecast {
   background-color: var(--color-bg-secondary);
-  width: 50rem;
-  height: 57.4rem;
   border-radius: var(--radius);
+  flex: 1;
+  min-width: 250px;
+  min-height: 100%;
+  height: auto;
 }
