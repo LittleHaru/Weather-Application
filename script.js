@@ -1,5 +1,6 @@
 const temperatureContainer = document.querySelector('.daily-forecast');
 const todayTemperature = document.querySelector('.today-temp');
+const todayIcon = document.querySelector('.today-icon')
 const unitBtn = document.querySelector(".units-btn");
 const dropDownMenu = document.querySelector('.dropdown-content');
 const dropBtn = document.querySelectorAll(".dropdown-content button");
@@ -97,7 +98,6 @@ function renderWeather(data) {
     day.classList.add("daily")
 
     const iconName = weatherIconName(weatherCodes[index], true);
-    console.log(weatherCodes)
     day.innerHTML = `
       <div class="daily-date">${formatDate(date)}</div>
       <img class="daily-weather-icon" src="./assets/images/${iconName}.webp" alt="${iconName.replace(/[-]/g, ' ')}">
@@ -110,11 +110,11 @@ function renderWeather(data) {
 }
 
 function renderCurrent(current) {
-  const weatherCodes = current.weather_code || [];
-  const iconName = weatherIconName(weatherCodes, true)
-  console.log(weatherCodes)
-  console.log(iconName)
-  todayTemperature.textContent = `${Math.round(current.temperature)}°C`;
+  const weatherCode = current.weather_code;
+  const iconName = weatherIconName(weatherCode, true);
+  const temperature = current.temperature_2m;
+  todayIcon.src = `./assets/images/${iconName}.webp`;
+  todayTemperature.textContent = `${Math.round(temperature)}°C`;
 }
 
 function weatherIconName(weatherCode, isDay) {
