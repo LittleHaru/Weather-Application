@@ -5,6 +5,10 @@ const unitBtn = document.querySelector(".units-btn");
 const dropDownMenu = document.querySelector('.dropdown-content');
 const dropBtn = document.querySelectorAll(".dropdown-content button");
 const metricBtn = document.querySelector(".unit-change");
+const appTemp = document.getElementById("feels-like-info");
+const humidityInfo = document.getElementById("humidity-info");
+const windInfo = document.getElementById("wind-info");
+const percipitationInfo = document.getElementById("percipitation-info")
 metricBtn.addEventListener("click", changeUnit);
 
 const settings = {
@@ -115,6 +119,17 @@ function renderCurrent(current) {
   const temperature = current.temperature_2m;
   todayIcon.src = `./assets/images/${iconName}.webp`;
   todayTemperature.textContent = `${Math.round(temperature)}°C`;
+}
+
+function renderCurrentInfo(current) {
+  const feelTemp = current.apparent_temperature;
+  const humidity = current.relative_humidity_2m
+  const wind = current.wind_speed_10m
+  const percipitation = current.precipitation
+  appTemp.textContent = feelTemp + "°"
+  humidityInfo.textContent = humidity + "%"
+  windInfo.textContent = wind // add unit later
+  percipitationInfo.textContent = percipitation // add unit later
 }
 
 function weatherIconName(weatherCode, isDay) {
