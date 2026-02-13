@@ -94,38 +94,30 @@ function renderWeather(data) {
 
   dates.forEach((date, index) => {
     const day = document.createElement('div');
-    const code = weatherCodes[index];
-    const name = weatherIconName(code, true);
     day.classList.add("daily")
 
     const iconName = weatherIconName(weatherCodes[index], true);
     console.log(weatherCodes)
     day.innerHTML = `
       <div class="daily-date">${formatDate(date)}</div>
-      <img class="current-weather-icon" src="./assets/images/${iconName}.webp" alt="${iconName.replace(/[-]/g, ' ')}">
+      <img class="daily-weather-icon" src="./assets/images/${iconName}.webp" alt="${iconName.replace(/[-]/g, ' ')}">
       <div class="daily-temp">
         ${Math.round(maxTemps[index])}° / ${Math.round(minTemps[index])}°
       </div>
       `;
-
     temperatureContainer.appendChild(day);
   });
 }
 
 function renderCurrent(current) {
+  const weatherCodes = current.weather_code || [];
+  const iconName = weatherIconName(weatherCodes, true)
+  console.log(weatherCodes)
+  console.log(iconName)
   todayTemperature.textContent = `${Math.round(current.temperature)}°C`;
-  setCurrentWeatherIcon(current.weathercode ?? current.weather_code, current.is_day);
 }
 
 function weatherIconName(weatherCode, isDay) {
   const base = weatherCodeToIcon[weatherCode] || 'unknown';
   return isDay ? `${base}` : `${base}`;
-}
-
-function setCurrentWeatherIcon(weatherCode, isDay) {
-  const iconName = weatherIconName(weatherCode, isDay);
-  const img = document.querySelector('.current-weather-icon');
-  if (img) {
-    img.src = `./assets/images/${iconName}.webp`;
-  }
 }
