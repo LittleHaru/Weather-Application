@@ -1,7 +1,7 @@
-async function getWeatherData(latitude, longitude) {
+async function getWeatherData(lat, long) { //data provider
     const params = new URLSearchParams({
-        latitude,
-        longitude,
+        latitude : lat,
+        longitude : long,
         current: "temperature_2m,weather_code,apparent_temperature,relative_humidity_2m,wind_speed_10m,precipitation",
         daily: "temperature_2m_max,temperature_2m_min,weather_code",
         timezone: 'auto'
@@ -14,14 +14,25 @@ async function getWeatherData(latitude, longitude) {
         if(!response.ok) {
             throw new Error(`HTTP Error! Status: ${response.status}`);
         }
-        const data = await response.json();
+        return await response.json()
+    } catch (error) {
+        showErrorMessage(`Fetch Erorr: ${error}`)
+        throw error;
+    }
+}
+
+async function updateDashboard(lat, long) { // orchestrator
+    try {
+        const data = await getWeatherData(lat,long)
         renderWeather(data.daily)
         renderCurrent(data.current)
         renderCurrentInfo(data.current)
     } catch (error) {
-        console.error("Fetch error:", error)
+        showErrorMessage(`Failed To Update Dashboard: ${error}`)
+        throw error;
     }
 }
-getWeatherData(3.1292, 101.6165); // KL
-// getWeatherData(40.0583, 74.4057); // new jersey
+
+updateDashboard(3.1292, 101.6165);
+
 
