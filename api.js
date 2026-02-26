@@ -4,6 +4,7 @@ async function getWeatherData(lat, long) { //data provider
         longitude : long,
         current: "temperature_2m,weather_code,apparent_temperature,relative_humidity_2m,wind_speed_10m,precipitation",
         daily: "temperature_2m_max,temperature_2m_min,weather_code",
+        hourly: "temperature_2m,weather_code",
         timezone: 'auto'
     });
 
@@ -27,6 +28,7 @@ async function updateDashboard(lat, long) { // orchestrator
         renderDailyWeather(data.daily)
         renderCurrent(data.current)
         renderCurrentInfo(data.current)
+        renderHourlyWeather(data.hourly)
     } catch (error) {
         showErrorMessage(`Failed To Update Dashboard: ${error}`)
         throw error;
