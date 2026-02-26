@@ -89,7 +89,7 @@ function formatDate(dateString) {
     });
 }
 
-function renderWeather(data) {
+function renderDailyWeather(data) {
   const dates = data.time;
   const maxTemps = data.temperature_2m_max;
   const minTemps = data.temperature_2m_min;
@@ -135,4 +135,8 @@ function renderCurrentInfo(current) {
 function weatherIconName(weatherCode, isDay) {
   const base = weatherCodeToIcon[weatherCode] || 'unknown';
   return isDay ? `${base}` : `${base}`;
+}
+
+function renderHourlyWeather(data) {
+
 }

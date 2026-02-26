@@ -24,7 +24,7 @@ async function getWeatherData(lat, long) { //data provider
 async function updateDashboard(lat, long) { // orchestrator
     try {
         const data = await getWeatherData(lat,long)
-        renderWeather(data.daily)
+        renderDailyWeather(data.daily)
         renderCurrent(data.current)
         renderCurrentInfo(data.current)
     } catch (error) {
