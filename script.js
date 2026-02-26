@@ -2,13 +2,16 @@ const temperatureContainer = document.querySelector('.daily-forecast');
 const todayTemperature = document.querySelector('.today-temp');
 const todayIcon = document.querySelector('.today-icon')
 const unitBtn = document.querySelector(".units-btn");
+const dayBtn = document.querySelector('.day-dropdown-btn')
 const dropDownMenu = document.querySelector('.dropdown-content');
+const dropDownDayMenu = document.querySelector('.day-dropdown-content')
 const dropBtn = document.querySelectorAll(".dropdown-content button");
 const metricBtn = document.querySelector(".unit-change");
 const appTemp = document.getElementById("feels-like-info");
 const humidityInfo = document.getElementById("humidity-info");
 const windInfo = document.getElementById("wind-info");
 const percipitationInfo = document.getElementById("percipitation-info")
+const hourlyContainer = document.querySelector('.hourly-forecast-content')
 metricBtn.addEventListener("click", changeUnit);
 
 const settings = {
@@ -53,10 +56,16 @@ function changeUnit() {
   settings.type = settings.type === "metric" ? "imperial" : "metric";
 }
 
-function dropDown() {
+function dropDownUnit() {
   dropDownMenu.classList.toggle("show");
 }
-unitBtn.addEventListener("click", dropDown);
+unitBtn.addEventListener("click", dropDownUnit);
+
+function dropDownDay() {
+  dropDownDayMenu.classList.toggle("showDay")
+}
+dayBtn.addEventListener("click", dropDownDay);
+
 
 document.addEventListener("click", e => {
     if (dropDownMenu.classList.contains("show")) {
@@ -87,6 +96,14 @@ function formatDate(dateString) {
     return date.toLocaleDateString([], {
         weekday: "short"
     });
+}
+
+function formatTime(dateString) {
+  const date = new Date(dateString);
+  return date.toLocaleTimeString([], {
+    hour: 'numeric',
+    hour12: true
+  });
 }
 
 function renderDailyWeather(data) {
@@ -132,11 +149,31 @@ function renderCurrentInfo(current) {
   percipitationInfo.textContent = percipitation // add unit later
 }
 
+function renderHourlyWeather(data) {
+  const dates = data.time
+  const temperature = data.temperature_2m
+  const weatherCodes = data.weather_code || []
+
+  hourlyContainer.innerHTML='';
+
+  dates.forEach((date, index) => {
+    const hourly = document.createElement('div')
+    hourly.classList.add("hourly")
+    const iconName = weatherIconName(weatherCodes[index], true)
+    const timeDisplay = formatTime(date)
+    hourly.innerHTML = `
+    <img class="hourly-weather-icon" src="./assets/images/${iconName}.webp" alt="${iconName.replace(/[-]/g, ' ')}">
+      <div class="hourly-time">${timeDisplay}</div>
+      <div class="hourly-temp">
+        ${Math.round(temperature[index])}°
+      </div>
+      `;
+    hourlyContainer.appendChild(hourly);
+  }) 
+}
+
 function weatherIconName(weatherCode, isDay) {
   const base = weatherCodeToIcon[weatherCode] || 'unknown';
   return isDay ? `${base}` : `${base}`;
 }
 
-function renderHourlyWeather(data) {
-
-}
