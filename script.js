@@ -161,9 +161,10 @@ function renderHourlyWeather(data) {
     hourly.classList.add("hourly")
     const iconName = weatherIconName(weatherCodes[index], true)
     const timeDisplay = formatTime(date)
-    hourly.innerHTML = `
-    <img class="hourly-weather-icon" src="./assets/images/${iconName}.webp" alt="${iconName.replace(/[-]/g, ' ')}">
+    hourly.innerHTML = `<div class="hourly-left">
+      <img class="hourly-weather-icon" src="./assets/images/${iconName}.webp" alt="${iconName.replace(/[-]/g, ' ')}">
       <div class="hourly-time">${timeDisplay}</div>
+      </div>
       <div class="hourly-temp">
         ${Math.round(temperature[index])}°
       </div>
