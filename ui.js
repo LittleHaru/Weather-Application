@@ -13,22 +13,19 @@ export function renderDailyWeather(data, symbol) {
   const maxTemps = data.temperature_2m_max;
   const minTemps = data.temperature_2m_min;
   const weatherCodes = data.weather_code || [];
-
-  temperatureContainer.innerHTML = ''
+  const dailyElements = document.querySelectorAll('.daily-info')
 
   dates.forEach((date, index) => {
-    const day = document.createElement('div');
-    day.classList.add("daily")
-
+    const dailyEl = dailyElements[index]
+    if(!dailyEl) return;
+    const dailyDate = dailyEl.querySelector('.daily-date')
+    const dailyWeatherIcon = dailyEl.querySelector('.daily-weather-icon')
+    const dailyTemp = dailyEl.querySelector('.daily-temp')
     const iconName = weatherIconName(weatherCodes[index], true);
-    day.innerHTML = `
-      <div class="daily-date">${formatDate(date)}</div>
-      <img class="daily-weather-icon" src="./assets/images/${iconName}.webp" alt="${iconName.replace(/[-]/g, ' ')}">
-      <div class="daily-temp">
-        ${Math.round(maxTemps[index])}° / ${Math.round(minTemps[index])}${symbol.temp}
-      </div>
-      `;
-    temperatureContainer.appendChild(day);
+    dailyDate.textContent = formatDate(date)
+    dailyWeatherIcon.src = `./assets/images/${iconName}.webp`
+    dailyWeatherIcon.alt = `${iconName.replace(/[-]/g, ' ')}`
+    dailyTemp.textContent = `${Math.round(maxTemps[index])}° / ${Math.round(minTemps[index])}${symbol.temp}`
   });
 }
 
