@@ -4,7 +4,6 @@ const humidityInfo = document.getElementById("humidity-info");
 const windInfo = document.getElementById("wind-info");
 const percipitationInfo = document.getElementById("percipitation-info")
 const hourlyContainer = document.querySelector('.hourly-forecast-content')
-const temperatureContainer = document.querySelector('.daily-forecast');
 const todayTemperature = document.querySelector('.today-temp');
 const todayIcon = document.querySelector('.today-icon')
 
