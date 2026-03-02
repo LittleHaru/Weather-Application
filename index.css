@@ -114,11 +114,33 @@ body {
 }
 
 .dropdown-content > button {
-  width: 15rem;
-  text-align: left;
+  width: 100%;
   background: none;
   border: 0;
   color: var(--color-text-primary);
+  display: flex;
+  align-items: center;
+  padding-right: 1.5rem;
+  justify-content: space-between;
+  text-align: left;
+}
+
+.dropdown-content > button span {
+  padding: 0;
+}
+
+.check-container {
+  width: 1.2rem;
+  height: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.check-container img {
+  width: 100%;
+  height: auto;
+  display: block;
 }
 
 .dropdown-content > button:hover {
