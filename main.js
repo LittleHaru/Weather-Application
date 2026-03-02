@@ -9,7 +9,6 @@ const unitChangeBtn = document.querySelector('.unit-change')
 const dayBtn = document.querySelector('.day-dropdown-btn')
 const dropDownMenu = document.querySelector('.dropdown-content');
 const dropDownDayMenu = document.querySelector('.day-dropdown-content')
-const dropBtn = document.querySelectorAll(".dropdown-content button");
 unitBtn.addEventListener("click", changeUnit);
 
 unitChangeBtn.addEventListener('click', async () => {
@@ -42,27 +41,18 @@ document.addEventListener("click", e => {
     }
 })
 
-dropBtn.forEach((button) => {
-  const parameter = button.getAttribute("parameter");
-  const value = button.getAttribute("value");
-  if (
-    button.getAttribute("parameter") === null ||
-    button.getAttribute("value") === null
-  ) {
-    return;
-  }
-  button.addEventListener("click", () => {
-    assignSetting(parameter, value);
-  });
-});
-
 async function updateDashboard(lat, long, unit) { // orchestrator
     try {
         const data = await getWeatherData(lat,long,unit)
-        renderDailyWeather(data.daily)
-        renderCurrent(data.current)
-        renderCurrentInfo(data.current)
-        renderHourlyWeather(data.hourly)
+        const symbols = {
+          temp: currentUnit === 'celsius' ? '°C' : '°F',
+          wind: currentUnit === 'celsius' ? 'km/h' : 'mph',
+          precip: currentUnit === 'celsius' ? 'mm' : 'in'
+        }
+        renderDailyWeather(data.daily, symbols)
+        renderCurrent(data.current, symbols)
+        renderCurrentInfo(data.current, symbols)
+        renderHourlyWeather(data.hourly, symbols)
     } catch (error) {
         showErrorMessage(`Failed To Update Dashboard: ${error}`)
         throw error;
