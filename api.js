@@ -1,4 +1,4 @@
-export async function getWeatherData(lat, long, unit) { //data provider
+export async function getWeatherData(lat, long, tempUnit, windUnit, prepUnit) { //data provider
     const params = new URLSearchParams({
         latitude : lat,
         longitude : long,
@@ -6,7 +6,9 @@ export async function getWeatherData(lat, long, unit) { //data provider
         daily: "temperature_2m_max,temperature_2m_min,weather_code",
         hourly: "temperature_2m,weather_code",
         timezone: 'auto',
-        temperature_unit: unit
+        temperature_unit: tempUnit,
+        wind_speed_unit: windUnit,
+        precipitation_unit: prepUnit 
     });
 
     const url = `https://api.open-meteo.com/v1/forecast?${params}`;
