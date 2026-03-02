@@ -8,7 +8,7 @@ const temperatureContainer = document.querySelector('.daily-forecast');
 const todayTemperature = document.querySelector('.today-temp');
 const todayIcon = document.querySelector('.today-icon')
 
-export function renderDailyWeather(data) {
+export function renderDailyWeather(data, symbol) {
   const dates = data.time;
   const maxTemps = data.temperature_2m_max;
   const minTemps = data.temperature_2m_min;
@@ -25,33 +25,33 @@ export function renderDailyWeather(data) {
       <div class="daily-date">${formatDate(date)}</div>
       <img class="daily-weather-icon" src="./assets/images/${iconName}.webp" alt="${iconName.replace(/[-]/g, ' ')}">
       <div class="daily-temp">
-        ${Math.round(maxTemps[index])}° / ${Math.round(minTemps[index])}°
+        ${Math.round(maxTemps[index])}° / ${Math.round(minTemps[index])}${symbol.temp}
       </div>
       `;
     temperatureContainer.appendChild(day);
   });
 }
 
-export function renderCurrent(current) {
+export function renderCurrent(current, symbol) {
   const weatherCode = current.weather_code;
   const iconName = weatherIconName(weatherCode, true);
   const temperature = current.temperature_2m;
   todayIcon.src = `./assets/images/${iconName}.webp`;
-  todayTemperature.textContent = `${Math.round(temperature)}°C`;
+  todayTemperature.textContent = `${Math.round(temperature)}${symbol.temp}`;
 }
 
-export function renderCurrentInfo(current) {
+export function renderCurrentInfo(current, symbol) {
   const feelTemp = current.apparent_temperature;
   const humidity = current.relative_humidity_2m
   const wind = current.wind_speed_10m
   const percipitation = current.precipitation
-  appTemp.textContent = feelTemp + "°"
+  appTemp.textContent = feelTemp + symbol.temp
   humidityInfo.textContent = humidity + "%"
-  windInfo.textContent = wind // add unit later
-  percipitationInfo.textContent = percipitation // add unit later
+  windInfo.textContent = `${wind} ${symbol.wind}`
+  percipitationInfo.textContent = `${percipitation} ${symbol.precip}`
 }
 
-export function renderHourlyWeather(data) {
+export function renderHourlyWeather(data, symbol) {
   const dates = data.time
   const temperature = data.temperature_2m
   const weatherCodes = data.weather_code || []
@@ -68,7 +68,7 @@ export function renderHourlyWeather(data) {
       <div class="hourly-time">${timeDisplay}</div>
       </div>
       <div class="hourly-temp">
-        ${Math.round(temperature[index])}°
+        ${Math.round(temperature[index])}${symbol.temp}
       </div>
       `;
     hourlyContainer.appendChild(hourly);
