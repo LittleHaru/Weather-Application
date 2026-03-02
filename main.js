@@ -82,7 +82,7 @@ function updateCheckmarks() {
   });
 }
 
-const unitOptionsButtons = document.querySelectorAll('dropdown-content button[parameter]')
+const unitOptionsButtons = document.querySelectorAll('.dropdown-content button')
 unitOptionsButtons.forEach(btn => {
   btn.addEventListener('click', async() => {
     const param = btn.getAttribute('parameter');
