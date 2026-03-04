@@ -54,3 +54,11 @@ export function getDayName(dateString) {
   const date = new Date(dateString + 'T00:00'); 
   return new Intl.DateTimeFormat('en-US', { weekday: 'long' }).format(date);
 }
+
+export function getSymbols(unitSettings) {
+  return {
+    temp: unitSettings.temperature === 'celsius' ? '°C' : '°F',
+    wind: unitSettings.windSpeed === 'kmh' ? 'km/h' : 'mph',
+    precip: unitSettings.percipitation === 'mm' ? 'mm' : 'inch'
+  }
+}
