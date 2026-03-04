@@ -14,6 +14,7 @@ let unitSettings = {
 const unitBtn = document.querySelector(".units-btn");
 const unitChangeBtn = document.querySelector('.unit-change')
 const dayBtn = document.querySelector('.day-dropdown-btn')
+const dayBtnName = document.querySelector('.dayName')
 const dropDownMenu = document.querySelector('.dropdown-content');
 const dropDownDayMenu = document.querySelector('.day-dropdown-content')
 
@@ -64,11 +65,11 @@ async function updateDashboard(lat, long, unitSettings) { // orchestrator
         dropDownDayMenu.innerHTML = '';
         data.daily.time.forEach(date => {
           const btn = document.createElement('button');
-          btn.value = date; // "2024-03-04"
-          btn.textContent = getDayName(date); // "Monday"
+          btn.value = date; 
+          btn.textContent = getDayName(date);
           dropDownDayMenu.appendChild(btn);
         })
-        dayBtn.textContent = getDayName(currentSelectedDay);
+        dayBtnName.textContent = getDayName(currentSelectedDay);
         renderDailyWeather(data.daily, symbols)
         renderCurrent(data.current, symbols)
         renderCurrentInfo(data.current, symbols)
@@ -110,7 +111,7 @@ unitOptionsButtons.forEach(btn => {
 dropDownDayMenu.addEventListener('click', (e) => {
   if (e.target.tagName === 'BUTTON') {
     currentSelectedDay = e.target.value;
-    dayBtn.textContent = e.target.textContent
+    dayBtnName.textContent = e.target.textContent 
 
     const symbols = {
       temp: unitSettings.temperature === 'celsius' ? '°C' : '°F',
