@@ -47,7 +47,7 @@ export function renderCurrentInfo(current, symbol) {
   percipitationInfo.textContent = `${percipitation} ${symbol.precip}`
 }
 
-export function renderHourlyWeather(data, symbol) {
+export function renderHourlyWeather(data, symbol, selectedDay = null) {
   const dates = data.time
   const temperature = data.temperature_2m
   const weatherCodes = data.weather_code || []
@@ -55,6 +55,9 @@ export function renderHourlyWeather(data, symbol) {
   hourlyContainer.innerHTML='';
 
   dates.forEach((date, index) => {
+    if (selectedDay && !date.startsWith(selectedDay)) {
+      return;
+    }
     const hourly = document.createElement('div')
     hourly.classList.add("hourly")
     const iconName = weatherIconName(weatherCodes[index], true)

@@ -1,8 +1,11 @@
 import { getWeatherData } from "./api.js";
 import { renderCurrent,renderCurrentInfo,renderHourlyWeather,renderDailyWeather } from "./ui.js";
+import { getISODate,getDayName } from "./util.js";
 // temp data
 let currentLat = 3.1292;
 let currentLong = 101.6165;
+let globalWeatherData = null; // cache the weather data
+let currentSelectedDay = getISODate();
 let unitSettings = {
   temperature: 'celsius',
   windSpeed: 'kmh',
@@ -52,15 +55,24 @@ async function updateDashboard(lat, long, unitSettings) { // orchestrator
           unitSettings.windSpeed,
           unitSettings.percipitation
         )
+        globalWeatherData = data
         const symbols = {
           temp: unitSettings.temperature === 'celsius' ? '°C' : '°F',
           wind: unitSettings.windSpeed === 'kmh' ? 'km/h' : 'mph',
           precip: unitSettings.percipitation === 'mm' ? 'mm' : 'inch'
         }
+        dropDownDayMenu.innerHTML = '';
+        data.daily.time.forEach(date => {
+          const btn = document.createElement('button');
+          btn.value = date; // "2024-03-04"
+          btn.textContent = getDayName(date); // "Monday"
+          dropDownDayMenu.appendChild(btn);
+        })
+        dayBtn.textContent = getDayName(currentSelectedDay);
         renderDailyWeather(data.daily, symbols)
         renderCurrent(data.current, symbols)
         renderCurrentInfo(data.current, symbols)
-        renderHourlyWeather(data.hourly, symbols)
+        renderHourlyWeather(data.hourly, symbols, currentSelectedDay)
     } catch (error) {
         showErrorMessage(`Failed To Update Dashboard: ${error}`)
         throw error;
@@ -93,6 +105,24 @@ unitOptionsButtons.forEach(btn => {
     updateCheckmarks();
     await updateDashboard(currentLat, currentLong, unitSettings)
   })
+})
+
+dropDownDayMenu.addEventListener('click', (e) => {
+  if (e.target.tagName === 'BUTTON') {
+    currentSelectedDay = e.target.value;
+    dayBtn.textContent = e.target.textContent
+
+    const symbols = {
+      temp: unitSettings.temperature === 'celsius' ? '°C' : '°F',
+      wind: unitSettings.windSpeed === 'kmh' ? 'km/h' : 'mph',
+      precip: unitSettings.percipitation === 'mm' ? 'mm' : 'inch'
+    };
+
+    if (globalWeatherData) {
+      renderHourlyWeather(globalWeatherData.hourly, symbols, currentSelectedDay);
+    }
+    dropDownDayMenu.classList.remove("showDay");
+  }
 })
 
 // default render replace with geo location later

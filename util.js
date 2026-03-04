@@ -44,3 +44,13 @@ export function weatherIconName(weatherCode, isDay) {
   const base = weatherCodeToIcon[weatherCode] || 'unknown';
   return isDay ? `${base}` : `${base}`;
 }
+
+export function getISODate(dateString = new Date()) {
+  const date = new Date(dateString);
+  return date.toISOString().split('T')[0];
+}
+
+export function getDayName(dateString) {
+  const date = new Date(dateString + 'T00:00'); 
+  return new Intl.DateTimeFormat('en-US', { weekday: 'long' }).format(date);
+}
