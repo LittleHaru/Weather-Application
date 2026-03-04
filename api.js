@@ -5,6 +5,7 @@ export async function getWeatherData(lat, long, tempUnit, windUnit, prepUnit) { 
         current: "temperature_2m,weather_code,apparent_temperature,relative_humidity_2m,wind_speed_10m,precipitation",
         daily: "temperature_2m_max,temperature_2m_min,weather_code",
         hourly: "temperature_2m,weather_code",
+        forecast_days: 7,
         timezone: 'auto',
         temperature_unit: tempUnit,
         wind_speed_unit: windUnit,
