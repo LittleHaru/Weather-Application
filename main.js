@@ -1,6 +1,6 @@
-import { getWeatherData } from "./api.js";
+import { getWeatherData , getGeocodeData } from "./api.js";
 import { renderCurrent,renderCurrentInfo,renderHourlyWeather,renderDailyWeather } from "./ui.js";
-import { getISODate,getDayName, getSymbols } from "./util.js";
+import { getISODate,getDayName, getSymbols, getCoordinatesFromLocation } from "./util.js";
 // temp data
 let unitSettings = {
   temperature: 'celsius',
@@ -16,7 +16,9 @@ const unitChangeBtn = document.querySelector('.unit-change')
 const dayBtn = document.querySelector('.day-dropdown-btn')
 const dayBtnName = document.querySelector('.dayName')
 const dropDownMenu = document.querySelector('.dropdown-content');
-const dropDownDayMenu = document.querySelector('.day-dropdown-content')
+const dropDownDayMenu = document.querySelector('.day-dropdown-content');
+const searchBtn = document.querySelector(".search-btn");
+const searchInput = document.querySelector('.search-input');
 
 unitChangeBtn.addEventListener('click', async () => {
   const isCurrentMetric = unitSettings.temperature === 'celsius';
@@ -126,6 +128,27 @@ dropDownDayMenu.addEventListener('click', (e) => {
   }
 })
 
-// default render replace with geo location later
+async function handleSearch(cityName) {
+  try {
+    const rawData = await getGeocodeData(cityName);
+    const coords = getCoordinatesFromLocation(rawData)
+
+    if (coords) {
+      currentLat = coords.lat
+      currentLong = coords.long
+      currentSelectedDay = getISODate();
+      console.log(currentLat)
+      await updateDashboard(currentLat, currentLong, unitSettings)
+    }
+  } catch (error) {
+  }
+}
+
+searchBtn.addEventListener('click', (e) => {
+  e.preventDefault()
+  const cityName = searchInput.value;
+  handleSearch(cityName); 
+})
+
 updateCheckmarks();
 updateDashboard(currentLat,currentLong,unitSettings)

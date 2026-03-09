@@ -26,4 +26,34 @@ export async function getWeatherData(lat, long, tempUnit, windUnit, prepUnit) { 
     }
 }
 
+export async function getGeocodeData(searchName) {
+    const params = new URLSearchParams({
+        name: searchName,
+        count: 10,
+        language: 'en',
+        format: 'json'
+    });
+
+    const url = `https://geocoding-api.open-meteo.com/v1/search?${params}`
+
+    try {
+        const response = await fetch(url);
+
+        if(!response.ok) {
+            throw new Error(`HTTP Error! Status: ${response.status}`);
+        }
+
+        const data = await response.json()
+
+        if(!data.results) {
+            console.warn(`No Location Found for: ${searchName}`);
+            return []
+        }
+        return await data.results;
+
+    } catch (error) {
+        showErrorMessage(`Search error: ${error}`)
+        throw error
+    }
+}
 

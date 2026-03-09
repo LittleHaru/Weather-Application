@@ -46,8 +46,9 @@ export function weatherIconName(weatherCode, isDay) {
 }
 
 export function getISODate(dateString = new Date()) {
-  const date = new Date(dateString);
-  return date.toISOString().split('T')[0];
+  const offset = dateString.getTimezoneOffset();
+  const localDate = new Date(dateString.getTime() - (offset * 60 * 1000));
+  return localDate.toISOString().split('T')[0];
 }
 
 export function getDayName(dateString) {
@@ -61,4 +62,13 @@ export function getSymbols(unitSettings) {
     wind: unitSettings.windSpeed === 'kmh' ? 'km/h' : 'mph',
     precip: unitSettings.percipitation === 'mm' ? 'mm' : 'inch'
   }
+}
+
+export function getCoordinatesFromLocation(data) {
+  if (!data || !Array.isArray(data) || data.length === 0) return null;
+    const firstResult = data[0]
+    return {
+      lat: firstResult.latitude,
+      long: firstResult.longitude,
+    };
 }
