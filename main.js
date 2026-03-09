@@ -137,7 +137,6 @@ async function handleSearch(cityName) {
       currentLat = coords.lat
       currentLong = coords.long
       currentSelectedDay = getISODate();
-      console.log(currentLat)
       await updateDashboard(currentLat, currentLong, unitSettings)
     }
   } catch (error) {
