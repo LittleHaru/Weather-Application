@@ -1,11 +1,13 @@
-import { formatDate,formatTime,weatherIconName } from "./util.js";
+import { getFullDate, formatShortDate,formatTime,weatherIconName } from "./util.js";
 const appTemp = document.getElementById("feels-like-info");
 const humidityInfo = document.getElementById("humidity-info");
 const windInfo = document.getElementById("wind-info");
 const percipitationInfo = document.getElementById("percipitation-info")
 const hourlyContainer = document.querySelector('.hourly-forecast-content')
 const todayTemperature = document.querySelector('.today-temp');
-const todayIcon = document.querySelector('.today-icon')
+const todayIcon = document.querySelector('.today-icon');
+const currentCountryContainer = document.querySelector('.country-info');
+const currentDateContainer = document.querySelector('.date-info')
 
 export function renderDailyWeather(data, symbol) {
   const dates = data.time;
@@ -21,7 +23,7 @@ export function renderDailyWeather(data, symbol) {
     const dailyWeatherIcon = dailyEl.querySelector('.daily-weather-icon')
     const dailyTemp = dailyEl.querySelector('.daily-temp')
     const iconName = weatherIconName(weatherCodes[index], true);
-    dailyDate.textContent = formatDate(date)
+    dailyDate.textContent = formatShortDate(date)
     dailyWeatherIcon.src = `./assets/images/${iconName}.webp`
     dailyWeatherIcon.alt = `${iconName.replace(/[-]/g, ' ')}`
     dailyTemp.textContent = `${Math.round(maxTemps[index])}° / ${Math.round(minTemps[index])}${symbol.temp}`
@@ -72,4 +74,23 @@ export function renderHourlyWeather(data, symbol, selectedDay = null) {
       `;
     hourlyContainer.appendChild(hourly);
   }) 
+}
+
+export function updateLocationName(countryName, cityName) {
+  if (!countryName || !cityName) {
+    return
+  } else {
+    currentCountryContainer.innerHTML = ''
+    currentCountryContainer.innerHTML = `${cityName}, ${countryName}`
+  }
+}
+
+export function updateCurrentDate(currentDate) {
+  const date = getFullDate(currentDate);
+  const dateNo = date.day
+  const dayName = date.weekday
+  const monthName = date.month
+  const year = date.year
+  currentDateContainer.innerHTML = ''
+  currentDateContainer.innerHTML = `${dayName}, ${monthName} ${dateNo}, ${year}`
 }

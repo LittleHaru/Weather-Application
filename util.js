@@ -25,12 +25,22 @@ const weatherCodeToIcon = {
   99: 'icon-storm',   
 };
 
-export function formatDate(dateString) {
-    const date = new Date(dateString);
-    return date.toLocaleDateString([], {
-        weekday: "short"
-    });
+export function formatShortDate(dateString) {
+  const date = new Date(dateString);
+  return date.toLocaleDateString([], {
+      weekday: "short"
+  });
 }
+
+export function getFullDate(dateString) {
+  const date = dateString ? new Date(dateString) : new Date();
+  const day = new Intl.DateTimeFormat('en-US', { day: 'numeric' }).format(date);
+  const weekday = new Intl.DateTimeFormat('en-US', { weekday: 'long' }).format(date);
+  const month = new Intl.DateTimeFormat('en-US', { month: 'short' }).format(date);
+  const year = new Intl.DateTimeFormat('en-US', { year: 'numeric' }).format(date);
+  return { day, weekday, month, year };
+}
+
 
 export function formatTime(dateString) {
   const date = new Date(dateString);
@@ -70,5 +80,14 @@ export function getCoordinatesFromLocation(data) {
     return {
       lat: firstResult.latitude,
       long: firstResult.longitude,
+    };
+}
+
+export function getNameFromLocation(data) {
+  if (!data || !Array.isArray(data) || data.length === 0) return null;
+    const firstResult = data[0]
+    return {
+      country: firstResult.country,
+      name: firstResult.name
     };
 }

@@ -1,6 +1,6 @@
 import { getWeatherData , getGeocodeData } from "./api.js";
-import { renderCurrent,renderCurrentInfo,renderHourlyWeather,renderDailyWeather } from "./ui.js";
-import { getISODate,getDayName, getSymbols, getCoordinatesFromLocation } from "./util.js";
+import { renderCurrent,renderCurrentInfo,renderHourlyWeather,renderDailyWeather, updateLocationName, updateCurrentDate } from "./ui.js";
+import { getISODate,getDayName, getSymbols, getCoordinatesFromLocation, getNameFromLocation, getFullDate } from "./util.js";
 // temp data
 let unitSettings = {
   temperature: 'celsius',
@@ -11,6 +11,8 @@ let currentLat = 3.1292;
 let currentLong = 101.6165;
 let globalWeatherData = null; // variable to cache the weather data
 let currentSelectedDay = getISODate();
+let currentCityName = '';
+let currentCountryName = '';
 const unitBtn = document.querySelector(".units-btn");
 const unitChangeBtn = document.querySelector('.unit-change')
 const dayBtn = document.querySelector('.day-dropdown-btn')
@@ -81,6 +83,8 @@ async function updateDashboard(lat, long, unitSettings) { // orchestrator
         renderCurrent(data.current, currentSymbol)
         renderCurrentInfo(data.current, currentSymbol)
         renderHourlyWeather(data.hourly, currentSymbol, currentSelectedDay)
+        updateLocationName(currentCountryName,currentCityName)
+        updateCurrentDate()
     } catch (error) {
         showErrorMessage(`Failed To Update Dashboard: ${error}`)
         throw error;
@@ -131,7 +135,13 @@ dropDownDayMenu.addEventListener('click', (e) => {
 async function handleSearch(cityName) {
   try {
     const rawData = await getGeocodeData(cityName);
+    const locationName = getNameFromLocation(rawData)
     const coords = getCoordinatesFromLocation(rawData)
+
+    if(locationName) {
+      currentCityName = locationName.name
+      currentCountryName = locationName.country
+    }
 
     if (coords) {
       currentLat = coords.lat
