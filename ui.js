@@ -80,8 +80,8 @@ export function updateLocationName(countryName, cityName) {
   if (!countryName || !cityName) {
     return
   } else {
-    currentCountryContainer.innerHTML = ''
-    currentCountryContainer.innerHTML = `${cityName}, ${countryName}`
+    currentCountryContainer.textContent = ''
+    currentCountryContainer.textContent = `${cityName}, ${countryName}`
   }
 }
 
@@ -91,6 +91,6 @@ export function updateCurrentDate(currentDate) {
   const dayName = date.weekday
   const monthName = date.month
   const year = date.year
-  currentDateContainer.innerHTML = ''
-  currentDateContainer.innerHTML = `${dayName}, ${monthName} ${dateNo}, ${year}`
+  currentDateContainer.textContent = ''
+  currentDateContainer.textContent = `${dayName}, ${monthName} ${dateNo}, ${year}`
 }
