@@ -160,13 +160,12 @@ searchBtn.addEventListener('click', (e) => {
 })
 
 async function initWeatherApp() {
+  const locationData = await getReverseGeocode(currentLat, currentLong);
   if ('geolocation' in navigator) {
     navigator.geolocation.getCurrentPosition(
       async (position) => {
         currentLat = position.coords.latitude;
         currentLong = position.coords.longitude;
-
-        const locationData = await getReverseGeocode(currentLat, currentLong);
         if (locationData) {
           currentCityName = locationData.name;
           currentCountryName = locationData.country
@@ -175,6 +174,10 @@ async function initWeatherApp() {
         await updateDashboard(currentLat , currentLong, unitSettings);
       }, (error) => { // change this 
         console.warn("Location Access Denied, Using Default coordinates");
+        if (locationData) {
+          currentCityName = locationData.name;
+          currentCountryName = locationData.country
+        }
         updateDashboard(currentLat,currentLong,unitSettings)
       } 
     );
