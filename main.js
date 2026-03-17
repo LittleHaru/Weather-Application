@@ -7,8 +7,8 @@ let unitSettings = {
   windSpeed: 'kmh',
   percipitation: 'mm'
 }
-let currentLat = 50.5039;
-let currentLong = 4.4699;
+let currentLat = 3.0734;
+let currentLong = 101.5217;
 let globalWeatherData = null; // variable to cache the weather data
 let currentSelectedDay = getISODate();
 let currentCityName = '';

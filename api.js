@@ -67,7 +67,7 @@ export async function getReverseGeocode(lat, long) {
         console.log(data)
 
         return {
-            name: data.city || data.locality || "Unknown Location",
+            name: data.locality || "Unknown Location",
             country: data.countryName
         };
     } catch (error) {
