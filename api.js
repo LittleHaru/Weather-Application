@@ -57,3 +57,21 @@ export async function getGeocodeData(searchName) {
     }
 }
 
+export async function getReverseGeocode(lat, long) {
+    try {
+        const response = await fetch(
+            `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${lat}&longitude=${long}&localityLanguage=en`
+        );
+        if (!response.ok) throw new Error("Reverse Geocode Fail");
+        const data = await response.json()
+        console.log(data)
+
+        return {
+            name: data.city || data.locality || "Unknown Location",
+            country: data.countryName
+        };
+    } catch (error) {
+        console.error("Reverse Geocode error:", error)
+        return null;
+    }
+}   

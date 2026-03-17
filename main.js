@@ -1,4 +1,4 @@
-import { getWeatherData , getGeocodeData } from "./api.js";
+import { getWeatherData , getGeocodeData, getReverseGeocode } from "./api.js";
 import { renderCurrent,renderCurrentInfo,renderHourlyWeather,renderDailyWeather, updateLocationName, updateCurrentDate } from "./ui.js";
 import { getISODate,getDayName, getSymbols, getCoordinatesFromLocation, getNameFromLocation, getFullDate } from "./util.js";
 // temp data
@@ -7,8 +7,8 @@ let unitSettings = {
   windSpeed: 'kmh',
   percipitation: 'mm'
 }
-let currentLat = 3.1292;
-let currentLong = 101.6165;
+let currentLat = 50.5039;
+let currentLong = 4.4699;
 let globalWeatherData = null; // variable to cache the weather data
 let currentSelectedDay = getISODate();
 let currentCityName = '';
@@ -159,5 +159,29 @@ searchBtn.addEventListener('click', (e) => {
   handleSearch(cityName); 
 })
 
+async function initWeatherApp() {
+  if ('geolocation' in navigator) {
+    navigator.geolocation.getCurrentPosition(
+      async (position) => {
+        currentLat = position.coords.latitude;
+        currentLong = position.coords.longitude;
+
+        const locationData = await getReverseGeocode(currentLat, currentLong);
+        if (locationData) {
+          currentCityName = locationData.name;
+          currentCountryName = locationData.country
+        }
+
+        await updateDashboard(currentLat , currentLong, unitSettings);
+      }, (error) => { // change this 
+        console.warn("Location Access Denied, Using Default coordinates");
+        updateDashboard(currentLat,currentLong,unitSettings)
+      } 
+    );
+  } else {
+    updateDashboard(currentLat,currentLong,unitSettings)
+  }
+}
+
 updateCheckmarks();
-updateDashboard(currentLat,currentLong,unitSettings)
+initWeatherApp();
