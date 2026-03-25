@@ -1,5 +1,5 @@
 import { getWeatherData , getGeocodeData, getReverseGeocode } from "./api.js";
-import { renderCurrent,renderCurrentInfo,renderHourlyWeather,renderDailyWeather, updateLocationName, updateCurrentDate } from "./ui.js";
+import { renderCurrent,renderCurrentInfo,renderHourlyWeather,renderDailyWeather, updateLocationName, updateCurrentDate, toggleSearchLoading, renderSearchResults, clearSearch, renderSearchError } from "./ui.js";
 import { getISODate,getDayName, getSymbols, getCoordinatesFromLocation, getNameFromLocation, getFullDate } from "./util.js";
 // temp data
 let unitSettings = {
@@ -135,41 +135,22 @@ dropDownDayMenu.addEventListener('click', (e) => {
 
 async function handleSearch(cityName) {
   if (!cityName) return;
-  searchDropdown.innerHTML = ''
-  searchDropdown.innerHTML = '<div class="search-status-msg">Searching...</div>';
-  searchDropdown.classList.add('show');
+  toggleSearchLoading(true)
 
   try {
     const results = await getGeocodeData(cityName);
 
-    if (!results || results.length === 0) {
-      searchDropdown.innerHTML = '<div class="search-status-msg">No results found</div>';
-      return;
-    }
+    renderSearchResults(results, async (location) => {
+      currentCityName = location.name;
+      currentCountryName = location.country;
+      currentLat = location.latitude;
+      currentLong = location.longitude;
+      currentSelectedDay = getISODate();
 
-    searchDropdown.innerHTML = '';
-    results.forEach(location => {
-      const btn = document.createElement('button');
-      const country = location.country ? `${location.country}` : '';
-      btn.textContent = `${location.name}, ${country}`;
-
-      btn.addEventListener('click', async () => {
-        currentCityName = location.name;
-        currentCountryName = location.country; 
-        currentLat = location.latitude;
-        currentLong = location.longitude;
-        currentSelectedDay = getISODate();
-
-        await updateDashboard(currentLat, currentLong, unitSettings);
-        searchDropdown.classList.remove('show');
-        searchInput.value = '';
-        searchDropdown.innerHTML = '';
-      });
-      searchDropdown.appendChild(btn);
+      await updateDashboard(currentLat,currentLong,unitSettings)
+      clearSearch(searchInput);
     });
-  } catch (error) {
-    searchDropdown.innerHTML = '<div class="search-status-msg">Error searching location</div>';
-  }
+  } catch (error) { renderSearchError('Error Searching Location') }
 }
 
 searchBtn.addEventListener('click', (e) => {

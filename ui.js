@@ -7,7 +7,8 @@ const hourlyContainer = document.querySelector('.hourly-forecast-content')
 const todayTemperature = document.querySelector('.today-temp');
 const todayIcon = document.querySelector('.today-icon');
 const currentCountryContainer = document.querySelector('.country-info');
-const currentDateContainer = document.querySelector('.date-info')
+const currentDateContainer = document.querySelector('.date-info');
+const searchDropdown = document.getElementById('search-dropdown');;
 
 export function renderDailyWeather(data, symbol) {
   const dates = data.time;
@@ -93,4 +94,43 @@ export function updateCurrentDate(currentDate) {
   const year = date.year
   currentDateContainer.textContent = ''
   currentDateContainer.textContent = `${dayName}, ${monthName} ${dateNo}, ${year}`
+}
+
+export function toggleSearchLoading(isLoading) {
+  if(isLoading) {
+    searchDropdown.innerHTML = '<div class="search-status-msg">Searching...</div>';
+    searchDropdown.classList.add('show');
+  }
+}
+
+export function renderSearchError(message = 'No Search Result Found!') {
+  searchDropdown.innerHTML = `<div class="search-status-msg">${message}</div>`;
+  searchDropdown.classList.add('show');
+}
+
+export function renderSearchResults(results, onSelect) {
+  searchDropdown.innerHTML = ''
+  if (!results || results.length === 0) {
+    renderSearchError();
+    return;
+  }
+
+  results.forEach(location => {
+    const btn = document.createElement('button');
+    const country = location.country ? `${location.country}` : '';
+    btn.textContent = `${location.name}, ${country}`;
+
+    btn.addEventListener('click', (e) => {
+      e.preventDefault()
+      onSelect(location);
+      searchDropdown.classList.remove('show');
+    });
+    searchDropdown.appendChild(btn);
+  })
+  searchDropdown.classList.add('show');
+}
+
+export function clearSearch(inputElement) {
+  searchDropdown.classList.remove('show');
+  if (inputElement) inputElement.value = '';
 }
