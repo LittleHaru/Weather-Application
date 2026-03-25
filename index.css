@@ -213,6 +213,21 @@ body {
   border: 0;
 }
 
+.search-dropdown-content {
+  display: none; 
+  position: absolute;
+  top: 100%; 
+  left: 0;
+  width: 100%; 
+  max-height: 25rem;
+  overflow-y: auto;
+  background-color: var(--color-bg-secondary);
+  border-radius: var(--radius);
+  z-index: 10; 
+  margin-top: 0.5rem;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+}
+
 .search-dropdown-content.show {
   display: flex;
   flex-direction: column;
@@ -238,6 +253,20 @@ body {
   color: var(--color-text-tertiary);
   text-align: center;
   cursor: default;
+}
+
+.search-dropdown-content::-webkit-scrollbar {
+  height: 1rem;
+  width: 1rem;
+}
+
+.search-dropdown-content::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.search-dropdown-content::-webkit-scrollbar-thumb {
+  background: var(--color-bg-tertiary); 
+  border-radius: 5px;
 }
 
 /* Weather Information */
