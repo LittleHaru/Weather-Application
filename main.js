@@ -21,7 +21,6 @@ const dropDownMenu = document.querySelector('.dropdown-content');
 const dropDownDayMenu = document.querySelector('.day-dropdown-content');
 const searchBtn = document.querySelector(".search-btn");
 const searchInput = document.querySelector('.search-input');
-const searchDropdown = document.getElementById('search-dropdown');
 
 unitChangeBtn.addEventListener('click', async () => {
   const isCurrentMetric = unitSettings.temperature === 'celsius';
