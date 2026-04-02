@@ -315,10 +315,12 @@ body {
 .temperature-container {
   position: relative;
   width: 100%;
-  height: 100%;
+  aspect-ratio: 16 / 9;
+  max-height: 35rem;
   border-radius: var(--radius);
   overflow: hidden;
   display: block;
+  background-color: var(--color-bg-primary);
 }
 
 .temperature-container img {
@@ -391,14 +393,23 @@ body {
   width: 100%;
   height: 100%;
   z-index: 10;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   border-radius: var(--radius);
   overflow: hidden;
   background-color: var(--color-bg-secondary); /* Fallback */
 }
 
 .loading-overlay > img {
-  width: 50%;
-  height: 50%;
+  width: 30%;
+  height: 40%;
+}
+
+.skeleton-title {
+  font-size: var(--font-size);
+  margin-top: var(--spacing-lg)
 }
 
 .hidden {
