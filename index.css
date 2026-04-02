@@ -357,12 +357,12 @@ body {
 }
 
 .left-temp {
-  margin-top: 12rem;
+  margin-top: 14.5rem;
   margin-left: 2rem;
 }
 
 .country-info {
-  font-size: 2.8rem;
+  font-size: 3vw;
 }
 
 .date-info {
@@ -383,7 +383,7 @@ body {
 }
 
 .today-temp {
-  font-size: 6rem;
+  font-size: 3vw;
 }
 
 .loading-overlay{
