@@ -82,17 +82,26 @@
     <div class="weather-content">
       <div class="left-side">
         <div class="temperature-container">
-          <div class="temperature-img">
-            <img src="./assets/images/bg-today-large.svg" alt="weather image">
-          </div>
-          <div class="temperature-info-container">
-            <div class="left-temp">
-              <div class="country-info"></div>
-              <div class="date-info"></div>
+          <div id="main-loading" class="loading-overlay hidden">
+            <img src="./assets/images/icon-loading.svg" alt="loading" class="loading-img">
+            <div class="skeleton-text-container">
+              <div class="skeleton-title"></div>
+              <div class="skeleton-subtitle"></div>
             </div>
-            <div class="right-temp">
-              <img src="./assets/images/icon-sunny.webp" alt="today-icon" class="today-icon">
-              <div class="today-temp"></div>
+          </div>
+          <div id="main-loaded" class="loaded-content">
+            <div class="temperature-img">
+              <img src="./assets/images/bg-today-large.svg" alt="weather image">
+            </div>
+            <div class="temperature-info-container">
+              <div class="left-temp">
+                <div class="country-info"></div>
+                <div class="date-info"></div>
+              </div>
+              <div class="right-temp">
+                <img alt="today-icon" class="today-icon">
+                <div class="today-temp"></div>
+              </div>
             </div>
           </div>
         </div>

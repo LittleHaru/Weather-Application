@@ -297,10 +297,28 @@ body {
   background-color: var(--color-bg-secondary);
 }
 
+.right-side {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  position: relative;
+}
+
+.left-side{
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+}
+
 /* Weather Info In Image */
 .temperature-container {
   position: relative;
-  display: inline-block;
+  width: 100%;
+  height: 100%;
+  border-radius: var(--radius);
+  overflow: hidden;
+  display: block;
 }
 
 .temperature-container img {
@@ -318,6 +336,7 @@ body {
   display: flex;      
   z-index: 2;
   gap: 20rem;
+  flex:2;
 }
 
 .weather-info .label {
@@ -365,6 +384,27 @@ body {
   font-size: 6rem;
 }
 
+.loading-overlay{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  border-radius: var(--radius);
+  overflow: hidden;
+  background-color: var(--color-bg-secondary); /* Fallback */
+}
+
+.loading-overlay > img {
+  width: 50%;
+  height: 50%;
+}
+
+.hidden {
+  display: none !important;
+}
+
 /* Daily Forcast */
 .daily-forecast {
   margin-top: var(--spacing-md);
@@ -406,11 +446,14 @@ body {
   background-color: var(--color-bg-secondary);
   border-radius: var(--radius);
   flex: 1;
-  height: 0;
-  min-width: 50rem;
-  min-height: 100%;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }
 
 .hourly-title {
@@ -441,7 +484,8 @@ body {
 
 .hourly {
   height: auto;
-  width: 80%;
+  width: 85%;
+  justify-content: space-between;
   min-height: 4rem;
   display: flex;
   flex: 1;
