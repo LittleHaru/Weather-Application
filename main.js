@@ -1,5 +1,5 @@
 import { getWeatherData , getGeocodeData, getReverseGeocode } from "./api.js";
-import { renderCurrent,renderCurrentInfo,renderHourlyWeather,renderDailyWeather, updateLocationName, updateCurrentDate, toggleSearchLoading, renderSearchResults, clearSearch, renderSearchError } from "./ui.js";
+import { renderCurrent,renderCurrentInfo,renderHourlyWeather,renderDailyWeather, updateLocationName, updateCurrentDate, toggleSearchLoading, renderSearchResults, clearSearch, renderSearchError, setLoading } from "./ui.js";
 import { getISODate,getDayName, getSymbols, getCoordinatesFromLocation, getNameFromLocation, getFullDate } from "./util.js";
 // temp data
 let unitSettings = {
@@ -63,6 +63,7 @@ document.addEventListener("click", e => {
 
 async function updateDashboard(lat, long, unitSettings) { // orchestrator
     try {
+      setLoading(true)
         const data = await getWeatherData(
           lat,
           long,
@@ -89,6 +90,8 @@ async function updateDashboard(lat, long, unitSettings) { // orchestrator
     } catch (error) {
         showErrorMessage(`Failed To Update Dashboard: ${error}`)
         throw error;
+    } finally {
+      setLoading(false)
     }
 }
 
@@ -160,6 +163,7 @@ searchBtn.addEventListener('click', (e) => {
 })
 
 async function initWeatherApp() {
+  setLoading(true)
   const locationData = await getReverseGeocode(currentLat, currentLong);
   if ('geolocation' in navigator) {
     navigator.geolocation.getCurrentPosition(

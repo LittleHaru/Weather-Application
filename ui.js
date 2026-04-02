@@ -8,7 +8,9 @@ const todayTemperature = document.querySelector('.today-temp');
 const todayIcon = document.querySelector('.today-icon');
 const currentCountryContainer = document.querySelector('.country-info');
 const currentDateContainer = document.querySelector('.date-info');
-const searchDropdown = document.getElementById('search-dropdown');;
+const searchDropdown = document.getElementById('search-dropdown');
+const loadingEL = document.getElementById('main-loading');
+const contentEL = document.getElementById('main-loaded');
 
 export function renderDailyWeather(data, symbol) {
   const dates = data.time;
@@ -133,4 +135,14 @@ export function renderSearchResults(results, onSelect) {
 export function clearSearch(inputElement) {
   searchDropdown.classList.remove('show');
   if (inputElement) inputElement.value = '';
+}
+
+export function setLoading(isLoading) {
+  if (isLoading) {
+    loadingEL.classList.remove('hidden')
+    contentEL.classList.add('hidden')
+  } else {
+    loadingEL.classList.add('hidden')
+    contentEL.classList.remove('hidden')
+  }
 }
