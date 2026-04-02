@@ -489,7 +489,7 @@ body {
   flex-direction: column;
   margin-top: 1rem;
   padding: 1rem;
-  gap: 1rem;
+  gap: 0.8rem;
   align-items: center;
 }
 
