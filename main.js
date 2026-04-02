@@ -1,6 +1,6 @@
 import { getWeatherData , getGeocodeData, getReverseGeocode } from "./api.js";
 import { renderCurrent,renderCurrentInfo,renderHourlyWeather,renderDailyWeather, updateLocationName, updateCurrentDate, toggleSearchLoading, renderSearchResults, clearSearch, renderSearchError, setLoading } from "./ui.js";
-import { getISODate,getDayName, getSymbols, getCoordinatesFromLocation, getNameFromLocation, getFullDate } from "./util.js";
+import { getISODate,getDayName, getSymbols} from "./util.js";
 // temp data
 let unitSettings = {
   temperature: 'celsius',
